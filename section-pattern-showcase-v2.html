@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Lease - Section Pattern Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.08);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        /* Pattern 1: Brand Purple Hero with Gradient Circles */
+        .pattern-1 {
+            background: linear-gradient(135deg, #31135d 0%, #4a1d85 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-1 .gradient-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(138, 92, 246, 0.3) 0%, rgba(96, 52, 174, 0.15) 100%);
+            filter: blur(40px);
+        }
+
+        .pattern-1 .gradient-circle-1 {
+            width: 500px;
+            height: 500px;
+            top: -150px;
+            right: -100px;
+        }
+
+        .pattern-1 .gradient-circle-2 {
+            width: 350px;
+            height: 350px;
+            bottom: -100px;
+            left: 5%;
+        }
+
+        .pattern-1 .gradient-circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: 20%;
+        }
+
+        /* Pattern 2: Light Background with Purple Circle Accents */
+        .pattern-2 {
+            background: #f7f8f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-2 .circle-accent {
+            position: absolute;
+            border-radius: 50%;
+            background: #31135d;
+        }
+
+        .pattern-2 .circle-accent-1 {
+            width: 300px;
+            height: 300px;
+            opacity: 0.05;
+            top: -100px;
+            right: 10%;
+        }
+
+        .pattern-2 .circle-accent-2 {
+            width: 180px;
+            height: 180px;
+            opacity: 0.08;
+            bottom: 50px;
+            left: 5%;
+        }
+
+        .pattern-2 .circle-accent-3 {
+            width: 120px;
+            height: 120px;
+            opacity: 0.06;
+            top: 40%;
+            right: 25%;
+        }
+
+        /* Pattern 3: White with Outlined Purple Bubbles */
+        .pattern-3 {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-3 .outlined-bubble {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid #31135d;
+            opacity: 0.12;
+        }
+
+        .pattern-3 .outlined-bubble-1 {
+            width: 350px;
+            height: 350px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .pattern-3 .outlined-bubble-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -80px;
+            right: 8%;
+        }
+
+        .pattern-3 .outlined-bubble-3 {
+            width: 150px;
+            height: 150px;
+            top: 45%;
+            left: 15%;
+        }
+
+        /* Pattern 4: Split Purple and Light with Center Circle */
+        .pattern-4 {
+            background: linear-gradient(110deg, #31135d 0%, #31135d 55%, #f7f8f9 55%, #f7f8f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-4 .content {
+            color: white;
+            max-width: 550px;
+        }
+
+        .pattern-4 .split-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .pattern-4 .split-circle-1 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .pattern-4 .split-circle-2 {
+            width: 180px;
+            height: 180px;
+            top: 15%;
+            left: 15%;
+        }
+
+        .pattern-4 .split-circle-3 {
+            width: 220px;
+            height: 220px;
+            bottom: 10%;
+            right: 10%;
+            background: rgba(49, 19, 93, 0.4);
+        }
+
+        /* Pattern 5: Light Gray with Gradient Purple Blobs */
+        .pattern-5 {
+            background: #f7f8f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-5 .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+
+        .pattern-5 .gradient-blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(49, 19, 93, 0.15) 0%, rgba(74, 29, 133, 0.08) 100%);
+            top: -120px;
+            right: 15%;
+        }
+
+        .pattern-5 .gradient-blob-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(138, 92, 246, 0.12) 0%, rgba(49, 19, 93, 0.06) 100%);
+            bottom: -100px;
+            left: 10%;
+        }
+
+        /* Pattern 6: Deep Purple with Floating Light Circles */
+        .pattern-6 {
+            background: #31135d;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-6 .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(247, 248, 249, 0.06);
+            border: 1px solid rgba(247, 248, 249, 0.1);
+        }
+
+        .pattern-6 .floating-circle-1 {
+            width: 280px;
+            height: 280px;
+            top: -80px;
+            left: 8%;
+        }
+
+        .pattern-6 .floating-circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 60px;
+            right: 12%;
+        }
+
+        .pattern-6 .floating-circle-3 {
+            width: 140px;
+            height: 140px;
+            top: 55%;
+            right: 30%;
+            background: rgba(247, 248, 249, 0.04);
+        }
+
+        .pattern-6 .floating-circle-4 {
+            width: 90px;
+            height: 90px;
+            top: 25%;
+            left: 25%;
+            background: rgba(247, 248, 249, 0.08);
+        }
+
+        /* Pattern 7: White with Purple Gradient Edge Circles */
+        .pattern-7 {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-7 .edge-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(49, 19, 93, 0.15) 0%, rgba(49, 19, 93, 0.03) 70%, transparent 100%);
+        }
+
+        .pattern-7 .edge-circle-1 {
+            width: 450px;
+            height: 450px;
+            top: -150px;
+            left: -150px;
+        }
+
+        .pattern-7 .edge-circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            right: -80px;
+        }
+
+        .pattern-7 .edge-circle-3 {
+            width: 180px;
+            height: 180px;
+            top: 30%;
+            right: 15%;
+        }
+
+        /* Pattern 8: Light Gray with Multiple Small Purple Dots */
+        .pattern-8 {
+            background: #f7f8f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-8 .dot-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: #31135d;
+        }
+
+        .pattern-8 .dot-circle-1 {
+            width: 80px;
+            height: 80px;
+            opacity: 0.15;
+            top: 20%;
+            right: 15%;
+        }
+
+        .pattern-8 .dot-circle-2 {
+            width: 60px;
+            height: 60px;
+            opacity: 0.1;
+            top: 60%;
+            left: 20%;
+        }
+
+        .pattern-8 .dot-circle-3 {
+            width: 100px;
+            height: 100px;
+            opacity: 0.08;
+            bottom: 15%;
+            right: 25%;
+        }
+
+        .pattern-8 .dot-circle-4 {
+            width: 45px;
+            height: 45px;
+            opacity: 0.12;
+            top: 35%;
+            left: 10%;
+        }
+
+        .pattern-8 .dot-circle-5 {
+            width: 70px;
+            height: 70px;
+            opacity: 0.09;
+            bottom: 40%;
+            right: 8%;
+        }
+
+        /* Content styling */
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 36px;
+            background: #31135d;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(49, 19, 93, 0.25);
+        }
+
+        .pattern-1 .cta-button,
+        .pattern-4 .cta-button,
+        .pattern-6 .cta-button {
+            background: white;
+            color: #31135d;
+        }
+
+        .pattern-1 .cta-button:hover,
+        .pattern-4 .cta-button:hover,
+        .pattern-6 .cta-button:hover {
+            box-shadow: 0 12px 28px rgba(255, 255, 255, 0.3);
+        }
+
+        .pattern-2 .section-label,
+        .pattern-5 .section-label,
+        .pattern-8 .section-label {
+            background: rgba(49, 19, 93, 0.08);
+            color: #31135d;
+        }
+
+        .pattern-1 .section-label,
+        .pattern-4 .section-label,
+        .pattern-6 .section-label {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pattern 1: Brand Purple Hero with Gradient Circles -->
+    <section class="pattern-1">
+        <div class="gradient-circle gradient-circle-1"></div>
+        <div class="gradient-circle gradient-circle-2"></div>
+        <div class="gradient-circle gradient-circle-3"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 1</div>
+                <h1>Multi-Locality Made Simple</h1>
+                <p>Enable flexibility and long-term relationships for users who live a multi-local lifestyle. Perfect for hero sections that need to make an immediate brand impression.</p>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 2: Light Background with Purple Circle Accents -->
+    <section class="pattern-2">
+        <div class="circle-accent circle-accent-1"></div>
+        <div class="circle-accent circle-accent-2"></div>
+        <div class="circle-accent circle-accent-3"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 2</div>
+                <h2>Transparent & Professional</h2>
+                <p>Clean, light background with subtle purple circles. Ideal for content sections where readability is paramount. Creates breathing room between more vibrant sections.</p>
+                <a href="#" class="cta-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 3: White with Outlined Purple Bubbles -->
+    <section class="pattern-3">
+        <div class="outlined-bubble outlined-bubble-1"></div>
+        <div class="outlined-bubble outlined-bubble-2"></div>
+        <div class="outlined-bubble outlined-bubble-3"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 3</div>
+                <h2>Balanced & Clean</h2>
+                <p>Pure white with outlined bubbles provides sophistication and clarity. Perfect for feature showcases, testimonials, or detailed information that needs maximum focus.</p>
+                <a href="#" class="cta-button">Explore</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 4: Split Purple and Light with Center Circle -->
+    <section class="pattern-4">
+        <div class="split-circle split-circle-1"></div>
+        <div class="split-circle split-circle-2"></div>
+        <div class="split-circle split-circle-3"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 4</div>
+                <h2>Split Schedule Design</h2>
+                <p>Diagonal split representing the duality of multi-local living. Creates visual drama while maintaining brand identity. Great for transitions between major sections.</p>
+                <a href="#" class="cta-button">Discover</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 5: Light Gray with Gradient Purple Blobs -->
+    <section class="pattern-5">
+        <div class="gradient-blob gradient-blob-1"></div>
+        <div class="gradient-blob gradient-blob-2"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 5</div>
+                <h2>Soft & Approachable</h2>
+                <p>Subtle gradient blobs on light gray create warmth without overwhelming. Excellent for explanatory sections, FAQs, or host/guest information where comfort is key.</p>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 6: Deep Purple with Floating Light Circles -->
+    <section class="pattern-6">
+        <div class="floating-circle floating-circle-1"></div>
+        <div class="floating-circle floating-circle-2"></div>
+        <div class="floating-circle floating-circle-3"></div>
+        <div class="floating-circle floating-circle-4"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 6</div>
+                <h2>Premium & Trustworthy</h2>
+                <p>Deep brand purple with floating transparent circles creates depth and sophistication. Perfect for pricing, testimonials, or call-to-action sections that need authority.</p>
+                <a href="#" class="cta-button">Join Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 7: White with Purple Gradient Edge Circles -->
+    <section class="pattern-7">
+        <div class="edge-circle edge-circle-1"></div>
+        <div class="edge-circle edge-circle-2"></div>
+        <div class="edge-circle edge-circle-3"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 7</div>
+                <h2>Radial Gradient Elegance</h2>
+                <p>White background with radial gradient circles emanating from edges. Creates organic flow and guides eye movement. Ideal for feature grids or multi-column layouts.</p>
+                <a href="#" class="cta-button">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern 8: Light Gray with Multiple Small Purple Dots -->
+    <section class="pattern-8">
+        <div class="dot-circle dot-circle-1"></div>
+        <div class="dot-circle dot-circle-2"></div>
+        <div class="dot-circle dot-circle-3"></div>
+        <div class="dot-circle dot-circle-4"></div>
+        <div class="dot-circle dot-circle-5"></div>
+        <div class="container">
+            <div class="content">
+                <div class="section-label">Pattern 8</div>
+                <h2>Playful Connectivity</h2>
+                <p>Multiple small dots scattered across light gray suggest network connections and multi-locality. Perfect for showing statistics, metrics, or the interconnected nature of the platform.</p>
+                <a href="#" class="cta-button">Connect Now</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
